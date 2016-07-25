@@ -1,0 +1,7 @@
+postgres-data
+server-logs
+persistent-storage
+logs
+certs
+env.conf
+config.json

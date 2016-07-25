@@ -1,0 +1,6 @@
+node_modules
+certs
+data
+config/config.json
+.*.swp
+*.DS_store
