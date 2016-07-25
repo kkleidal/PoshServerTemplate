@@ -3,21 +3,21 @@
     "username": "postgres",
     "password": " ",
     "database": "your_app",
-    "host": "127.0.0.1",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
     "password": " ",
     "database": "your_app",
-    "host": "127.0.0.1",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
     "password": " ",
     "database": "your_app",
-    "host": "127.0.0.1",
+    "host": "postgres",
     "dialect": "postgres"
   }
 }
