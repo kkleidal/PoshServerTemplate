@@ -18,7 +18,14 @@ do_install() {
         apt-get -y install apt-transport-https ca-certificates
         apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
         # Only for 14.04 (change for any other ubuntu version):
-        echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list
+        if [ -n "$(python -mplatform | grep -i 14.04)" ]; then
+            echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee /etc/apt/sources.list.d/docker.list
+        elif [ -n "$(python -mplatform | grep -i 16.04)" ]; then
+            echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
+        else
+            echo "Unsupported ubuntu version." >&2
+            exit 1;
+        fi
         apt-get -y update
         apt-get -y purge lxc-docker
         apt-cache policy docker-engine
@@ -26,6 +33,9 @@ do_install() {
         apt-get install -y --force-yes docker-engine
         service docker start
         docker run hello-world
+    else
+        echo "Unsupported OS." >&2
+        exit 1;
     fi
     git submodule update --init
     printf "Installed\n"
